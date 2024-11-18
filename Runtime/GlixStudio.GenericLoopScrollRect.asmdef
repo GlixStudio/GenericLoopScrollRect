@@ -1,0 +1,16 @@
+{
+    "name": "GlixStudio.GenericLoopScrollRect",
+    "rootNamespace": "GlixStudio.GenericLoopScrollRect",
+    "references": [
+        "LoopScrollRect.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

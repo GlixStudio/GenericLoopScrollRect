@@ -1,0 +1,10 @@
+{
+  "name": "com.glixstudio.genericloopscrollrect",
+  "version": "1.0.0",
+  "displayName": "Generic Loop Scroll Rect",
+  "description": "Generic Loop Scroll Rect for Unity.",
+  "unity": "6000.0",
+  "author": {
+    "name": "GLIXStudio"
+  }
+}
