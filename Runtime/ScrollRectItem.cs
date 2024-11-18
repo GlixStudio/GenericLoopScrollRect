@@ -18,7 +18,7 @@ namespace GlixStudio.GenericScrollRect
 
         public virtual void RefreshUI(int index)
         {
-            
+
         }
 
         protected void OnItemClick()

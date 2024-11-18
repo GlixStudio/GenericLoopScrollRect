@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace GlixStudio.GenericScrollRect
@@ -35,12 +36,41 @@ namespace GlixStudio.GenericScrollRect
             loopScrollRect.RefillCells();
         }
 
+        public virtual void UpdateView()
+        {
+            loopScrollRect.totalCount = ItemDataList.Count;
+            loopScrollRect.RefillCells();
+        }
+
+        public void UpdateViewDelayed()
+        {
+            StartCoroutine(UpdateViewCoroutine());
+        }
+
+        private IEnumerator UpdateViewCoroutine()
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            UpdateView();
+        }
+
         protected virtual void OnItemCreated(ScrollRectItem<T> item)
         {
-            
+
         }
 
         protected abstract void OnItemClick(int index);
+
+        public virtual void ProvideData(Transform itemTransform, int index)
+        {
+            T itemData = ItemDataList[index];
+
+            if (_itemTransformToItemMap.TryGetValue(itemTransform, out ScrollRectItem<T> item))
+            {
+                item.UpdateIndex(index);
+                item.UpdateData(itemData);
+            }
+        }
 
         public virtual GameObject GetObject(int index)
         {
@@ -64,17 +94,6 @@ namespace GlixStudio.GenericScrollRect
             itemTransform.gameObject.SetActive(false);
             itemTransform.SetParent(transform, false);
             _itemPool.Push(itemTransform);
-        }
-
-        public virtual void ProvideData(Transform itemTransform, int index)
-        {
-            T itemData = ItemDataList[index];
-
-            if (_itemTransformToItemMap.TryGetValue(itemTransform, out ScrollRectItem<T> item))
-            {
-                item.UpdateIndex(index);
-                item.UpdateData(itemData);
-            }
         }
     }
 }
